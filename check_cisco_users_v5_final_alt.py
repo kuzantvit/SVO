@@ -33,16 +33,16 @@ command2 = 'show arp'
 #USER = input('Username: ')
 USER = 'av.kuzmin'
 #PASSWORD = getpass.getpass()
-PASSWORD = 'Piece123'
+PASSWORD = '2255255525525552646Pie46346436435ce123'
 #ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
 #ENABLE_PASS =  'On'
-DEVICES_IP = ['10.64.189.1']
+DEVICES_IP = ['10.255.10.1']
 IP = '10.48.180.253'
 
-#ip_tocheck = ['10.10.50.13']
-#ip_tocheck = ['10.10.48.1']
+#ip_tocheck = ['10.10.10.13']
+#ip_tocheck = ['10.10.10.1']
 ip_tocheck = []
-#ip_tocheck = ['10.10.48.1', '10.10.50.13']
+#ip_tocheck = ['10.10.10.1', '10.10.50.13']
 #ip_to_input = input('Vvedite ip address: ')
 #ip_tocheck.append(ip_to_input)
 
@@ -90,7 +90,7 @@ def check_cisco_users(ip_tocheck):
     ad_analog_css =[]
     users_css =[]    
     ad_analog = []
-    all_users = ['ciscolms', 'zhivin', 'npetrov', 'nick', 'ts.galchenko', 'al.kucherenko', 'pandreev', 'irkin', 'marochkin', 'ten_ma', 'karaulov', 'rv.nyukhryaev', 'sivanov', 'Makarov_DV', 'romanov', 'vv.loginov', 'av.trifonov', 'da.davydov', 'vv.oblasov', 'rk.bikmaev', 'pe.zdanov', 'av.kuzmin', 'ra.morozov']
+    all_users = ['ciscolms', 'npetrov', 'nick', 'test']
     suspicious_users_list = []
     suspicious_users_css =[]
     client = paramiko.SSHClient()
