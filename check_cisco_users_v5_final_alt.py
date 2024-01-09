@@ -23,7 +23,7 @@ else:
         day_string = str(now.day)
 date_string = day_string + month_string
 
-result_list = open('c:\\Users\\av.kuzmin\\Documents\\scripts\\network\\workingcsvresult'+ date_string + '_' + str(now.hour) + '-' + str(now.minute) + '.txt', mode ='a', encoding = 'utf-8')
+result_list = open('c:\\Users\\avkuzmin\\Documents\\scripts\\network\\workingcsvresult'+ date_string + '_' + str(now.hour) + '-' + str(now.minute) + '.txt', mode ='a', encoding = 'utf-8')
 
 
 
@@ -100,13 +100,13 @@ def check_cisco_users(ip_tocheck):
                    look_for_keys=False, allow_agent=False)
     ssh = client.invoke_shell(term='vt100', width=240, height=120, width_pixels=0, height_pixels=0, environment=None)
     time.sleep(1)
-    ssh.send('ssh 10.10.48.1\n')
+    ssh.send('ssh 8.8.8.8\n')
     time.sleep(1)
-    ssh.send('Cr1mson69\n')
+    ssh.send('test\n')
     time.sleep(1)
     ssh.send('enable\n')
     time.sleep(1)
-    ssh.send('Cr1mson69\n')
+    ssh.send('test\n')
     time.sleep(1)
 # 
     ssh.send('ssh -vrf MGMT ' + str(ip_tocheck) + '\n')
@@ -123,7 +123,7 @@ def check_cisco_users(ip_tocheck):
         print('======================================Next itteration=============================================')
         return users_css, ad_analog_css, suspicious_users_css
 #
-    ssh.send('Cr1mson69\n')
+    ssh.send('test\n')
     time.sleep(8)
     ssh_out2 = ssh.recv(8000).decode('utf-8')
     check2 = ssh_out2[-10:]
@@ -159,7 +159,7 @@ def check_cisco_users(ip_tocheck):
         print('======================================Next itteration=============================================')
         return users_css, ad_analog_css, suspicious_users_css
     #
-    ssh.send('Cr1mson69\n')
+    ssh.send('test\n')
     time.sleep(3)
     ssh_out3 = ssh.recv(8000).decode('utf-8')
     check3 = ssh_out3[-10:]
