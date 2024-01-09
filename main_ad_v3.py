@@ -17,10 +17,10 @@ else:
 date_string = day_string + month_string
 
 
-filename_users = 'c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\files\\export_usernames.csv'
-filename_surnames = 'c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\files\\export_surnames.csv'
-filename_all = 'c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\files\\Работники.xlsx'
-result_wb = 'c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\results\\Проверка.xlsx'
+filename_users = 'c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\files\\export_usernames.csv'
+filename_surnames = 'c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\files\\export_surnames.csv'
+filename_all = 'c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\files\\Работники.xlsx'
+result_wb = 'c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\results\\Проверка.xlsx'
 wb = load_workbook(filename=result_wb)
 ws = wb.create_sheet(date_string + '_' + str(now.hour) + '-' + str(now.minute))
 
@@ -196,7 +196,7 @@ else:
             user_from_group_department.append('Департамент отсутствует')
 
 
-result_list = open('c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\results\\workingcsvresult'+ date_string + '_' + str(now.hour) + '-' + str(now.minute) + '.txt', mode ='a', encoding = 'utf-8')
+result_list = open('c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\results\\workingcsvresult'+ date_string + '_' + str(now.hour) + '-' + str(now.minute) + '.txt', mode ='a', encoding = 'utf-8')
 result_list.write('\n=====================================================ЗАБЛОКИРОВАНЫЕ УЗ ИЗ СПИСКА=======================================================\n' + '\n'.join(locked_users))
 result_list.write('\n=====================================================РАЗБЛОКИРОВАННЫЕ УЗ ИЗ СПИСКА=======================================================\n' + '\n'.join(unlocked_users))
 result_list.write('\n=====================================================УВОЛЕННЫЕ СОТРУДНИКИ ИЗ СПИСКА=======================================================\n' + '\n'.join(fired))
