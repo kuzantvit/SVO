@@ -27,13 +27,13 @@ else:
         day_string = str(now.day)
 date_string = day_string + month_string
 
-server = Server('ldap://svodc01.svo.air.loc', port=389, use_ssl=True, get_info=ALL)
-conn = Connection(server, user="SVO.AIR.LOC\\av.kuzmin", password=pswd, authentication=NTLM)
+server = Server('ldap://dc.loc', port=389, use_ssl=True, get_info=ALL)
+conn = Connection(server, user="SV\avkuz", password=pswd, authentication=NTLM)
 conn.bind()
 conn.start_tls()
-search_filter ='(&(' + str('company') + '=' + str('ОАО "Международный аэропорт Шереметьево"') + ')' + '(objectclass=user))'
-result = conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', search_filter, search_scope=SUBTREE,attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False) #attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
-conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', search_filter, search_scope=SUBTREE,attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
+search_filter ='(&(' + str('company') + '=' + str('ОАО "Международный"') + ')' + '(objectclass=user))'
+result = conn.extend.standard.paged_search('DC=SV', search_filter, search_scope=SUBTREE,attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False) #attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+conn.extend.standard.paged_search('DC=SV', search_filter, search_scope=SUBTREE,attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
 i = 0
 entries = []
 for item in result:
