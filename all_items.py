@@ -24,7 +24,7 @@ date_string = day_string + month_string
 
 result_list = open('C:\\cisco_test\\temp\\Result '+ 'net check ' + 'files_copied.txt', mode ='a')
 
-def save_data_to_excel(*args, filename='c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
+def save_data_to_excel(*args, filename='c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
     """ Функция для сохранения данных в excel
         """
     try:
@@ -47,7 +47,7 @@ def save_data_to_excel(*args, filename='c:\\Users\\av.kuzmin\\Documents\\scripts
 a =[]
 b =[]
 c =[]
-for dirpath, dirnames, filename in os.walk('\\\\SOLOVYEVA\\c$\\Users\\oa.soloveva\\Documents'):
+for dirpath, dirnames, filename in os.walk('\\\\SOLOVYEVA\\c$\\Users\\oasoloveva\\Documents'):
         #print('1==========')
         print(dirpath)
         print('2==========')
