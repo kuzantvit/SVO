@@ -14,7 +14,7 @@ from openpyxl.styles.borders import Border, Side
 import re
 import datetime
 
-pswd = 'Cr1mson69'
+pswd = 'dfjidfindifdfdf'
 sAMAccountName = []
 
 now = datetime.datetime.now()
@@ -29,8 +29,8 @@ else:
         day_string = str(now.day)
 date_string = day_string + month_string
 
-server = Server('ldap://svodc01.svo.air.loc', port=389, use_ssl=True, get_info=ALL)
-conn = Connection(server, user="SVO.AIR.LOC\\av.kuzmin", password=pswd, authentication=NTLM)
+server = Server('ldap://dc.loc', port=389, use_ssl=True, get_info=ALL)
+conn = Connection(server, user="DC.loc\avkuzmin", password=pswd, authentication=NTLM)
 conn.bind()
 conn.start_tls()
 
@@ -90,8 +90,8 @@ def getinfo_by_username(username):
     global conn
     sAMAccountName = '(sAMAccountName=' + username + ')'
     try:
-        #conn.search('DC=SVO,DC=AIR,DC=LOC', sAMAccountName, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
-        conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', sAMAccountName, search_scope=SUBTREE,
+        #conn.search('DC=DC, DC =LOC', sAMAccountName, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+        conn.extend.standard.paged_search('DC=DC, DC =LOC', sAMAccountName, search_scope=SUBTREE,
                                           attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         all_data = conn.entries[0]
     except IndexError:
@@ -103,8 +103,8 @@ def getinfo_by_surname(surname):
     global conn
     name = '(name=' + surname + ')'
     try:
-        #conn.search('DC=SVO,DC=AIR,DC=LOC', name, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
-        conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', name, search_scope=SUBTREE,
+        #conn.search('DC=DC, DC =LOC', name, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+        conn.extend.standard.paged_search('DC=DC, DC =LOC', name, search_scope=SUBTREE,
                                           attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         all_data = conn.entries[0]
     except IndexError:
@@ -126,8 +126,8 @@ def get_status_by_username(username):
     global conn
     name = '(sAMAccountName=' + username + ')'
     try:
-        #conn.search('DC=SVO,DC=AIR,DC=LOC', name, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
-        conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', name, search_scope=SUBTREE,
+        #conn.search('DC=DC, DC =LOC', name, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+        conn.extend.standard.paged_search('DC=DC, DC =LOC', name, search_scope=SUBTREE,
                                           attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         if conn.entries[0].userAccountControl.value == 514 or conn.entries[0].userAccountControl.value == 546 or \
                 conn.entries[0].userAccountControl.value == 66050 or conn.entries[0].userAccountControl.value == 66082:
@@ -143,8 +143,8 @@ def get_status_by_surname(surname):
     global conn
     name = '(name=' + surname + ')'
     try:
-        #conn.search('DC=SVO,DC=AIR,DC=LOC', name, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
-        conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', name, search_scope=SUBTREE,
+        #conn.search('DC=DC, DC =LOC', name, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+        conn.extend.standard.paged_search('DC=DC, DC =LOC', name, search_scope=SUBTREE,
                                           attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         if conn.entries[0].userAccountControl.value == 514 or conn.entries[0].userAccountControl.value == 546 or \
                 conn.entries[0].userAccountControl.value == 66050 or conn.entries[0].userAccountControl.value == 66082:
@@ -163,14 +163,14 @@ def get_users_from_group(groupname):
     # search_base = str(groupname) + ',OU=Groups,DC=SVO,DC=AIR,DC=LOC'
     users_in_group = []
     try:
-        #conn.search('DC=SVO,DC=AIR,DC=LOC', groupname, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+        #conn.search('DC=DC, DC =LOC', groupname, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
         conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', groupname, search_scope=SUBTREE, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         for i in range(len(conn.entries[0].member.value)):
             result = re.search(r'^CN=(.+?),', conn.entries[0].member.value[i])
             member = result.group(1)
             users_in_group.append(member)
     except ldap3.core.exceptions.LDAPCursorError:
-        conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', groupname, search_scope=SUBTREE, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
+        conn.extend.standard.paged_search('DC=DC, DC =LOC', groupname, search_scope=SUBTREE, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         for i in range(len(conn.entries[1].member.value)):
             result = re.search(r'^CN=(.+?),', conn.entries[1].member.value[i])
             member = result.group(1)
@@ -202,8 +202,8 @@ def get_users_with_specified_attribute(name, value):
     surname = []
     search_filter ='(&(' + str(name) + '=' + str(value) + ')' + '(objectclass=user))'
     try:
-        #conn.search('DC=SVO,DC=AIR,DC=LOC', search_filter, paged_size=4000, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
-        conn.extend.standard.paged_search('DC=SVO,DC=AIR,DC=LOC', search_filter, search_scope=SUBTREE, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
+        #conn.search('DC=DC, DC =LOC', search_filter, paged_size=4000, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES])
+        conn.extend.standard.paged_search('DC=DC, DC =LOC', search_filter, search_scope=SUBTREE, attributes=[ALL_ATTRIBUTES, ALL_OPERATIONAL_ATTRIBUTES], generator=False)
         for i in range(len(conn.entries)):
             username.append(conn.entries[i].sAMAccountName.value)
             surname.append(conn.entries[i].name.value)
@@ -215,7 +215,7 @@ def get_users_with_specified_attribute(name, value):
     if len(surname) == 0:
         surname.append('No such users')
     return username, surname
-def save_data_to_excel(*args, filename='c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
+def save_data_to_excel(*args, filename='c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
     try:
         wb_write = load_workbook(filename)
     except FileNotFoundError:
@@ -235,7 +235,7 @@ def save_data_to_excel(*args, filename='c:\\Users\\av.kuzmin\\Documents\\scripts
 
 
 def excel_ccs(func):
-    def wrapper(*args, filename='c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
+    def wrapper(*args, filename='c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
         wb_work = func(*args,**kwargs)
         ws_write = wb_work[str(date_string)]
         thin_border = Border(left=Side(style='thin'),
