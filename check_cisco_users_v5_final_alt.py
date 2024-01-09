@@ -31,22 +31,22 @@ result_list = open('c:\\Users\\av.kuzmin\\Documents\\scripts\\network\\workingcs
 COMMAND = 'show run | i username'
 command2 = 'show arp'
 #USER = input('Username: ')
-USER = 'av.kuzmin'
+USER = 'avkuzmin'
 #PASSWORD = getpass.getpass()
-PASSWORD = '2255255525525552646Pie46346436435ce123'
+PASSWORD = '5353535353535353535353535353535'
 #ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
 #ENABLE_PASS =  'On'
-DEVICES_IP = ['10.255.10.1']
-IP = '10.48.180.253'
+DEVICES_IP = ['8.8.8.8']
+IP = '8.8.8.8'
 
-#ip_tocheck = ['10.10.10.13']
-#ip_tocheck = ['10.10.10.1']
+#ip_tocheck = ['8.8.8.8']
+#ip_tocheck = ['8.8.8.8']
 ip_tocheck = []
-#ip_tocheck = ['10.10.10.1', '10.10.50.13']
+#ip_tocheck = ['8.8.8.8', '8.8.8.8']
 #ip_to_input = input('Vvedite ip address: ')
 #ip_tocheck.append(ip_to_input)
 
-wb_read = load_workbook(filename='c:\\Users\\av.kuzmin\\Documents\\scripts\\network\\files\\network_devices.xlsx')
+wb_read = load_workbook(filename='c:\\Users\\avkuzmin\\Documents\\scripts\\network\\files\\network_devices.xlsx')
 ws_read = wb_read['Лист1']
 for i in range(600):
     if ws_read.cell(row=i+1,column=1).value != None:
@@ -78,7 +78,7 @@ ad_analog_final = []
 suspicious_users_final =[]
 resik = []
 
-result_list = open('c:\\Users\\av.kuzmin\\Documents\\scripts\\network\\workingcsvresult'+ date_string + '_' + str(now.hour) + '-' + str(now.minute) + '.txt', mode ='a', encoding = 'utf-8')
+result_list = open('c:\\Users\\avkuzmin\\Documents\\scripts\\network\\workingcsvresult'+ date_string + '_' + str(now.hour) + '-' + str(now.minute) + '.txt', mode ='a', encoding = 'utf-8')
 def check_cisco_users(ip_tocheck):
     global IP
     global USER
@@ -220,7 +220,7 @@ def check_cisco_users(ip_tocheck):
         suspicious_users_css.append('None')
     client.close()
     return users_css, ad_analog_css, suspicious_users_css
-#ADinfo.save_data_to_excel(ip_tocheck, users, ad_analog, filename = 'c:\\Users\\av.kuzmin\\Documents\\scripts\\network\\result\\test_users.xlsx')
+#ADinfo.save_data_to_excel(ip_tocheck, users, ad_analog, filename = 'c:\\Users\\avkuzmin\\Documents\\scripts\\network\\result\\test_users.xlsx')
 for i in ip_tocheck:
     users_fin, ad_analog_fin, suspicious_users = check_cisco_users(i)
     users_final.append(users_fin[0])
@@ -229,7 +229,7 @@ for i in ip_tocheck:
     #resik.append(result)
 
     
-def save_data_to_excel(*args, filename='c:\\Users\\av.kuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
+def save_data_to_excel(*args, filename='c:\\Users\\avkuzmin\\Documents\\scripts\\AD\\results\\Проверка12.xlsx', **kwargs):
     try:
         wb_write = load_workbook(filename)
     except FileNotFoundError:
